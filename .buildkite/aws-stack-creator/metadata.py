@@ -69,4 +69,5 @@ COMMON_STACK_PARAMS = {
     "EnableCostAllocationTags": "true",
     "CostAllocationTagName": "CreatedBy",
     "ECRAccessPolicy": "poweruser",
+    "ManagedPolicyARN": "arn:aws:iam::aws:policy/AmazonS3FullAccess",
 }
