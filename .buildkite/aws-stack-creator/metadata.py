@@ -14,7 +14,7 @@ STACK_PARAMS = {
         "InstanceType": "g4dn.xlarge",
         "AgentsPerInstance": "1",
         "MinSize": "0",
-        "MaxSize": "2",
+        "MaxSize": "8",
         "OnDemandPercentage": "100",
         "ScaleOutFactor": "1.0",
         "ScaleInIdlePeriod": "60",  # in seconds
@@ -24,7 +24,7 @@ STACK_PARAMS = {
         "InstanceType": "g4dn.12xlarge",
         "AgentsPerInstance": "1",
         "MinSize": "0",
-        "MaxSize": "2",
+        "MaxSize": "4",
         "OnDemandPercentage": "100",
         "ScaleOutFactor": "1.0",
         "ScaleInIdlePeriod": "60",  # in seconds
@@ -44,7 +44,7 @@ STACK_PARAMS = {
         "InstanceType": "c5a.4xlarge",
         "AgentsPerInstance": "1",
         "MinSize": "0",
-        "MaxSize": "2",
+        "MaxSize": "16",
         "OnDemandPercentage": "100",
         "ScaleOutFactor": "1.0",
         "ScaleInIdlePeriod": "60",  # in seconds
@@ -54,7 +54,7 @@ STACK_PARAMS = {
         "InstanceType": "c6g.4xlarge",
         "AgentsPerInstance": "1",
         "MinSize": "0",
-        "MaxSize": "2",
+        "MaxSize": "8",
         "OnDemandPercentage": "100",
         "ScaleOutFactor": "1.0",
         "ScaleInIdlePeriod": "60",  # in seconds
