@@ -146,6 +146,14 @@ Resources:
             {
               "Effect": "Allow",
               "Action": [
+                "ec2:CreateDefaultVpc",
+                "ec2:CreateDefaultSubnet"
+              ],
+              "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
                 "iam:CreateInstanceProfile",
                 "iam:GetInstanceProfile",
                 "iam:AddRoleToInstanceProfile",
