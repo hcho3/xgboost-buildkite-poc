@@ -5,6 +5,7 @@ AMI_ID = {
     "windows-gpu": {"us-east-2": "ami-08a1d787d27d215f9"},
     # Managed by BuildKite
     "linux-amd64-cpu": {"us-east-2": "ami-00f6d034cc4ccc18b"},
+    "pipeline-loader": {"us-east-2": "ami-00f6d034cc4ccc18b"},
     "linux-arm64-cpu": {"us-east-2": "ami-0e2269f2c64400c76"},
 }
 
@@ -45,6 +46,16 @@ STACK_PARAMS = {
         "AgentsPerInstance": "1",
         "MinSize": "0",
         "MaxSize": "16",
+        "OnDemandPercentage": "100",
+        "ScaleOutFactor": "1.0",
+        "ScaleInIdlePeriod": "60",  # in seconds
+    },
+    "pipeline-loader": {
+        "InstanceOperatingSystem": "linux",
+        "InstanceType": "t3a.micro",
+        "AgentsPerInstance": "1",
+        "MinSize": "1",
+        "MaxSize": "1",
         "OnDemandPercentage": "100",
         "ScaleOutFactor": "1.0",
         "ScaleInIdlePeriod": "60",  # in seconds
