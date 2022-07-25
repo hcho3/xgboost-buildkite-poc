@@ -1,5 +1,5 @@
 steps:
-  - label: ":console:"
+  - label: ":console: Build CUDA"
     command: "tests/buildkite/build_cuda.sh"
     key: build_cuda
     agents:
