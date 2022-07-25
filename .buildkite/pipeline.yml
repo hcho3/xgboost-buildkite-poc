@@ -1,6 +1,0 @@
-name: "XGBoost CI"
-steps:
-  - label: ":pipeline:"
-    command: "buildkite-agent pipeline upload tests/buildkite/pipeline.yml"
-    agents:
-      queue: linux-amd64-cpu
