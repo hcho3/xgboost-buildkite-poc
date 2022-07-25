@@ -6,7 +6,6 @@ from urllib.request import urlopen
 
 import boto3
 import cfn_flip
-
 from metadata import IMAGE_PARAMS
 
 current_dir = os.path.dirname(__file__)
