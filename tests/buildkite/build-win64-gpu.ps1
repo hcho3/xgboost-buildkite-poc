@@ -5,11 +5,11 @@ $ErrorActionPreference = "Stop"
 Write-Host "--- Build libxgboost on Windows with CUDA"
 
 nvcc --version
-if ( $is_release_branch -eq 0 ) {
+#if ( $is_release_branch -eq 0 ) {
   $arch_flag = "-DGPU_COMPUTE_VER=75"
-} else {
-  $arch_flag = ""
-}
+#} else {
+#  $arch_flag = ""
+#}
 mkdir build
 cd build
 cmake .. -G"Visual Studio 15 2017 Win64" -DUSE_CUDA=ON -DCMAKE_VERBOSE_MAKEFILE=ON `
