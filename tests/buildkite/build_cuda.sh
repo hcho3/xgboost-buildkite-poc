@@ -9,6 +9,11 @@ echo "Build with CUDA ${CUDA_VERSION}"
 
 source ${BUILDKITE_BUILD_CHECKOUT_PATH}/tests/buildkite/conftest.sh
 
+if [[ ($is_pull_request == 1) || ($is_release_branch == 0) ]]
+then
+  arch_flag="-DGPU_COMPUTE_VER=75"
+fi
+
 command_wrapper="tests/ci_build/ci_build.sh gpu_build_centos7 docker --build-arg "`
                 `"CUDA_VERSION_ARG=$CUDA_VERSION"
 
@@ -27,3 +32,12 @@ mv -v wheelhouse/*.whl python-package/dist/
 # Make sure that libgomp.so is vendored in the wheel
 tests/ci_build/ci_build.sh auditwheel_x86_64 docker bash -c \
   "unzip -l python-package/dist/*.whl | grep libgomp  || exit -1"
+
+echo "Uploading Python wheel..."
+if [[ ($is_pull_request == 0) && ($is_release_branch == 1) ]]
+then
+  aws s3 cp python-package/dist/*.whl s3://xgboost-nightly-builds/${BRANCH_NAME}/ \
+    --acl public-read --no-progress
+fi
+echo "Stashing C++ test executable (testxgboost)..."
+buildkite-agent artifact upload build/testxgboost

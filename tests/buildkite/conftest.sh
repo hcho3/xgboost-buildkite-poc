@@ -18,9 +18,4 @@ else
   is_release_branch=0
 fi
 
-if [[ $is_pull_request || ($is_release_branch == 0) ]]
-then
-  arch_flag="-DGPU_COMPUTE_VER=75"
-fi
-
 set +x
