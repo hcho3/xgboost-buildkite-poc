@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 if [[ -n $BUILDKITE_PULL_REQUEST && $BUILDKITE_PULL_REQUEST != "false" ]]
 then
   is_pull_request=1
@@ -20,3 +22,5 @@ if [[ $is_pull_request || ($is_release_branch == 0) ]]
 then
   arch_flag="-DGPU_COMPUTE_VER=75"
 fi
+
+set +x
