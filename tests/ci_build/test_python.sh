@@ -16,6 +16,10 @@ fi
 function install_xgboost {
   wheel_found=0
   pip install --upgrade pip --user
+  pwd
+  ls
+  ls python-package
+  ls python-package/dist
   for file in python-package/dist/*.whl
   do
     if [ -e "${file}" ]
