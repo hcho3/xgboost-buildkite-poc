@@ -6,9 +6,9 @@ Write-Host "--- Test XGBoost on Windows with CUDA"
 
 New-Item python-package/dist -ItemType Directory -ea 0
 New-Item build -ItemType Directory -ea 0
-buildkite-agent artifact download "python-package/dist/*.whl" . --step build-win64-gpu
-buildkite-agent artifact download "build/testxgboost.exe" . --step build-win64-gpu
-buildkite-agent artifact download "testxgboost.exe" . --step build-win64-gpu
+buildkite-agent artifact download "python-package\\dist\\*.whl" . --step build-win64-gpu
+buildkite-agent artifact download "build\\testxgboost.exe" . --step build-win64-gpu
+buildkite-agent artifact download "xgboost.exe" . --step build-win64-gpu
 
 nvcc --version
 
