@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 CUDA_VERSION=11.0
 WHEEL_TAG=manylinux2014_x86_64
 
