@@ -38,7 +38,7 @@ STACK_PARAMS = {
         "MaxSize": "2",
         "OnDemandPercentage": "100",
         "ScaleOutFactor": "1.0",
-        "ScaleInIdlePeriod": "60",  # in seconds
+        "ScaleInIdlePeriod": "600",  # in seconds
     },
     "linux-amd64-cpu": {
         "InstanceOperatingSystem": "linux",
