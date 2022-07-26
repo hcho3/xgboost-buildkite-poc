@@ -41,13 +41,13 @@ Write-Host "--- Upload Python wheel"
 cd ../..
 Get-ChildItem . -Filter python-package/dist/*.whl |
 Foreach-Object {
-  & buildkite-agent artifact upload $_
+  & buildkite-agent artifact upload $_.FullName
   if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
 }
 if ( $is_release_branch -eq 1 ) {
   Get-ChildItem . -Filter python-package/dist/*.whl |
   Foreach-Object {
-    & aws s3 cp $_ s3://xgboost-nightly-builds/$Env:BUILDKITE_BRANCH/ `
+    & aws s3 cp $_.FullName s3://xgboost-nightly-builds/$Env:BUILDKITE_BRANCH/ `
     --acl public-read --no-progress
     if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
   }
