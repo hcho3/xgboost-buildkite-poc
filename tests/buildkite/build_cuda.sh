@@ -14,7 +14,7 @@ command_wrapper="tests/ci_build/ci_build.sh gpu_build_centos7 docker --build-arg
 
 $command_wrapper tests/ci_build/build_via_cmake.sh -DUSE_CUDA=ON -DUSE_NCCL=ON \
   -DUSE_OPENMP=ON -DHIDE_CXX_SYMBOLS=ON ${arch_flag}
-$command_wrapper tests/ci_build/build_via_cmake.sh bash -c \
+$command_wrapper bash -c \
   "cd python-package && rm -rf dist/* && python setup.py bdist_wheel --universal"
 $command_wrapper python tests/ci_build/rename_whl.py python-package/dist/*.whl \
   ${BUILDKITE_COMMIT} ${WHEEL_TAG}
