@@ -5,24 +5,7 @@ WHEEL_TAG=manylinux2014_x86_64
 
 echo "Build with CUDA ${CUDA_VERSION}"
 
-if [[ -n $BUILDKITE_PULL_REQUEST && $BUILDKITE_PULL_REQUEST != "false" ]]
-then
-  is_pull_request=1
-else
-  is_pull_request=0
-fi
-
-if [[ $BUILDKITE_BRANCH == "master" || $BUILDKITE_BRANCH == "release_"* ]]
-then
-  is_release_branch=1
-else
-  is_release_branch=0
-fi
-
-if [[ $is_pull_request || ($is_release_branch == 0) ]]
-then
-  arch_flag="-DGPU_COMPUTE_VER=75"
-fi
+source ./conftest.sh
 
 command_wrapper="tests/ci_build/ci_build.sh gpu_build_centos7 docker --build-arg "`
                 `"CUDA_VERSION_ARG=$CUDA_VERSION"
