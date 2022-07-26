@@ -79,9 +79,10 @@ COMMON_STACK_PARAMS = {
     "ScaleOutForWaitingJobs": "false",
     "EnableCostAllocationTags": "true",
     "CostAllocationTagName": "CreatedBy",
-    "ECRAccessPolicy": "poweruser",
+    "ECRAccessPolicy": "full",
     "ManagedPolicyARN": "arn:aws:iam::aws:policy/AmazonS3FullAccess",
     "EnableSecretsPlugin": "false",
     "EnableECRPlugin": "false",
     "EnableDockerLoginPlugin": "false",
+    "EnableDockerUserNamespaceRemap": "false",
 }
