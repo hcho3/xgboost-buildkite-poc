@@ -5,7 +5,7 @@ WHEEL_TAG=manylinux2014_x86_64
 
 echo "Build with CUDA ${CUDA_VERSION}"
 
-source ./conftest.sh
+source ${BUILDKITE_BUILD_CHECKOUT_PATH}/tests/buildkite/conftest.sh
 
 command_wrapper="tests/ci_build/ci_build.sh gpu_build_centos7 docker --build-arg "`
                 `"CUDA_VERSION_ARG=$CUDA_VERSION"
