@@ -4,7 +4,7 @@ set -euo pipefail
 
 echo "--- Build CPU code"
 
-source ${BUILDKITE_BUILD_CHECKOUT_PATH}/tests/buildkite/conftest.sh
+source tests/buildkite/conftest.sh
 
 command_wrapper="tests/ci_build/ci_build.sh cpu docker"
 

@@ -4,7 +4,7 @@ set -euo pipefail
 
 echo "--- Run clang-tidy"
 
-source ${BUILDKITE_BUILD_CHECKOUT_PATH}/tests/buildkite/conftest.sh
+source tests/buildkite/conftest.sh
 
 tests/ci_build/ci_build.sh clang_tidy docker --build-arg CUDA_VERSION_ARG=11.0 \
   python3 tests/ci_build/tidy.py --cuda-archs 75

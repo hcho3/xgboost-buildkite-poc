@@ -7,7 +7,7 @@ WHEEL_TAG=manylinux2014_x86_64
 
 echo "--- Build with CUDA ${CUDA_VERSION}"
 
-source ${BUILDKITE_BUILD_CHECKOUT_PATH}/tests/buildkite/conftest.sh
+source tests/buildkite/conftest.sh
 
 if [[ ($is_pull_request == 1) || ($is_release_branch == 0) ]]
 then
@@ -39,6 +39,7 @@ tests/ci_build/ci_build.sh auditwheel_x86_64 docker bash -c \
   "unzip -l python-package/dist/*.whl | grep libgomp  || exit -1"
 
 echo "--- Upload Python wheel"
+buildkite-agent artifact upload python-package/dist/*.whl
 if [[ ($is_pull_request == 0) && ($is_release_branch == 1) ]]
 then
   aws s3 cp python-package/dist/*.whl s3://xgboost-nightly-builds/${BRANCH_NAME}/ \

@@ -22,3 +22,9 @@ steps:
     key: build-cuda
     agents:
       queue: linux-amd64-cpu
+  - wait
+  - label: ":console: Test Python CPU"
+    command: "tests/buildkite/test-python-cpu.sh"
+    key: test-python-cpu
+    agents:
+      queue: linux-amd64-cpu

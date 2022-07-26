@@ -6,7 +6,7 @@ WHEEL_TAG=manylinux2014_aarch64
 
 echo "--- Build CPU code targeting ARM64"
 
-source ${BUILDKITE_BUILD_CHECKOUT_PATH}/tests/buildkite/conftest.sh
+source tests/buildkite/conftest.sh
 
 command_wrapper="tests/ci_build/ci_build.sh aarch64 docker"
 
