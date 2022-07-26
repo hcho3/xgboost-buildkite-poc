@@ -19,6 +19,7 @@ $msbuild = -join @(
   "\\Bin\\MSBuild.exe"
 )
 & $msbuild xgboost.sln /m /p:Configuration=Release /nodeReuse:false
+if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
 
 Write-Host "--- Build binary wheel"
 cd ../python-package
@@ -26,25 +27,29 @@ conda activate
 & python setup.py bdist_wheel --universal
 Get-ChildItem . -Filter dist/*.whl |
 Foreach-Object {
-  & python ../tests/ci_build/rename_whl.py $_ $Env:BUILDKITE_COMMIT win_amd64
+  & python ../tests/ci_build/rename_whl.py $_.FullName $Env:BUILDKITE_COMMIT win_amd64
+  if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
 }
 
 Write-Host "--- Insert vcomp140.dll (OpenMP runtime) into the wheel"
 cd dist
 Copy-Item -Path ../../tests/ci_build/insert_vcomp140.py -Destination .
 & python insert_vcomp140.py *.whl
+if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
 
 Write-Host "--- Upload Python wheel"
 cd ../..
 Get-ChildItem . -Filter python-package/dist/*.whl |
 Foreach-Object {
   & buildkite-agent artifact upload $_
+  if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
 }
 if ( $is_release_branch -eq 1 ) {
   Get-ChildItem . -Filter python-package/dist/*.whl |
   Foreach-Object {
-    & awscli s3 cp $_ s3://xgboost-nightly-builds/$Env:BUILDKITE_BRANCH/ `
+    & aws s3 cp $_ s3://xgboost-nightly-builds/$Env:BUILDKITE_BRANCH/ `
     --acl public-read --no-progress
+    if ($LASTEXITCODE -ne 0) { throw "Last command failed" }
   }
 }
 
