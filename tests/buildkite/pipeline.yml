@@ -1,3 +1,6 @@
+env:
+  DOCKER_CACHE_ECR_ID: "492475357299"
+  DOCKER_CACHE_ECR_REGION: "us-west-2"
 steps:
   - label: ":console: Build CUDA"
     command: "tests/buildkite/build_cuda.sh"
