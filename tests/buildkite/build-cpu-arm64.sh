@@ -28,7 +28,7 @@ $command_wrapper python tests/ci_build/rename_whl.py wheelhouse/*.whl \
   ${BUILDKITE_COMMIT} ${WHEEL_TAG}
 mv -v wheelhouse/*.whl python-package/dist/
 # Make sure that libgomp.so is vendored in the wheel
-$command_wrapper docker bash -c \
+$command_wrapper bash -c \
   "unzip -l python-package/dist/*.whl | grep libgomp  || exit -1"
 
 echo "--- Upload Python wheel"
