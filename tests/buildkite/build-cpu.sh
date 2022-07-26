@@ -17,6 +17,8 @@ echo "--- Build libxgboost from the source"
 $command_wrapper tests/ci_build/build_via_cmake.sh -DPLUGIN_DENSE_PARSER=ON
 echo "--- Run Google Test"
 $command_wrapper bash -c "cd build && ctest --extra-verbose"
+echo "--- Stash XGBoost CLI executable"
+buildkite-agent artifact upload ./xgboost
 
 # Sanitizer test
 echo "--- Run Google Test with sanitizer enabled"
@@ -29,6 +31,3 @@ CI_DOCKER_EXTRA_PARAMS_INIT="-e ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer "`
   `"--cap-add SYS_PTRACE" \
   $command_wrapper bash -c "cd build && ctest --exclude-regex AllTestsInDMLCUnitTests "`
                            `"--extra-verbose"
-
-echo "--- Stash XGBoost CLI executable"
-buildkite-agent artifact upload ./xgboost
