@@ -9,12 +9,12 @@ echo "--- Build with CUDA ${CUDA_VERSION}"
 
 source tests/buildkite/conftest.sh
 
-if [[ ($is_pull_request == 1) || ($is_release_branch == 0) ]]
-then
+#if [[ ($is_pull_request == 1) || ($is_release_branch == 0) ]]
+#then
   arch_flag="-DGPU_COMPUTE_VER=75"
-else
-  arch_flag=""
-fi
+#else
+#  arch_flag=""
+#fi
 
 command_wrapper="tests/ci_build/ci_build.sh gpu_build_centos7 docker --build-arg "`
                 `"CUDA_VERSION_ARG=$CUDA_VERSION"

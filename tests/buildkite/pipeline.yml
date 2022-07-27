@@ -22,6 +22,26 @@ steps:
     key: build-cuda
     agents:
       queue: linux-amd64-cpu
+  - label: ":console: Build R package with CUDA"
+    command: "tests/buildkite/build-gpu-rpkg.sh"
+    key: build-gpu-rpkg
+    agents:
+      queue: linux-amd64-cpu
+  - label: ":console: Build JVM packages"
+    command: "tests/buildkite/build-jvm-packages.sh"
+    key: build-jvm-packages
+    agents:
+      queue: linux-amd64-cpu
+  - label: ":console: Build JVM packages with CUDA"
+    command: "tests/buildkite/build-jvm-packages-gpu.sh"
+    key: build-jvm-packages-gpu
+    agents:
+      queue: linux-amd64-mgpu
+  - label: ":console: Build JVM package doc"
+    command: "tests/buildkite/build-jvm-doc.sh"
+    key: build-jvm-doc
+    agents:
+      queue: linux-amd64-cpu
   - wait
   - label: ":console: Test Python CPU"
     command: "tests/buildkite/test-python-cpu.sh"
