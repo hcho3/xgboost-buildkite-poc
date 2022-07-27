@@ -19,6 +19,7 @@ source tests/buildkite/conftest.sh
 echo "--- Fetch build artifacts"
 buildkite-agent artifact download "python-package/dist/*.whl" . --step build-cuda
 buildkite-agent artifact download "build/testxgboost" . --step build-cuda
+chmod +x build/testxgboost
 
 # Allocate extra space in /dev/shm to enable NCCL
 export CI_DOCKER_EXTRA_PARAMS_INIT='--shm-size=4g'
