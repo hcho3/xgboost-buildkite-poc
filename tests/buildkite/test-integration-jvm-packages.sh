@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+JDK_VERSION=8
+SPARK_VERSION=3.0.1
+
+source tests/buildkite/conftest.sh
+
+echo "--- Test XGBoost4J on a machine with JDK ${JDK_VERSION}, Spark ${SPARK_VERSION}"
+export CI_DOCKER_EXTRA_PARAMS_INIT='-e RUN_INTEGRATION_TEST=1'
+tests/ci_build/ci_build.sh jvm_cross docker --build-arg JDK_VERSION=${JDK_VERSION} \
+  --build-arg SPARK_VERSION=${SPARK_VERSION} tests/ci_build/test_jvm_cross.sh
