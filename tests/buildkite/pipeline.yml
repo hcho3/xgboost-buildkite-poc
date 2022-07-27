@@ -82,3 +82,11 @@ steps:
     key: test-integration-jvm-packages
     agents:
       queue: linux-amd64-cpu
+
+  - wait
+
+  - label: ":console: Deploy JVM packages"
+    command: "tests/buildkite/deploy-jvm-packages.sh"
+    key: deploy-jvm-packages
+    agents:
+      queue: linux-amd64-cpu
