@@ -13,7 +13,7 @@ tests/ci_build/ci_build.sh gpu_build_r_centos7 docker \
   --build-arg CUDA_VERSION_ARG=11.0 tests/ci_build/build_r_pkg_with_cuda.sh \
   ${BUILDKITE_COMMIT}
 
-Write-Host "--- Upload R tarball"
+echo "--- Upload R tarball"
 aws s3 cp xgboost_r_gpu_linux_*.tar.gz s3://xgboost-nightly-builds/${BRANCH_NAME}/ \
   --acl public-read --no-progress
 
