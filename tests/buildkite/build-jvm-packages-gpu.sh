@@ -18,7 +18,3 @@ echo "--- Build XGBoost JVM packages with CUDA"
 tests/ci_build/ci_build.sh jvm_gpu_build nvidia-docker \
   --build-arg CUDA_VERSION_ARG=11.0 tests/ci_build/build_jvm_packages.sh \
   ${SPARK_VERSION} -Duse.cuda=ON ${arch_flag}
-
-echo "--- Stash XGBoost4J JARs"
-buildkite-agent artifact upload "jvm-packages/xgboost4j-gpu/target/*.jar"
-buildkite-agent artifact upload "jvm-packages/xgboost4j-spark-gpu/target/*.jar"
